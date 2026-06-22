@@ -1,0 +1,185 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+:root {
+  --radius: 0.75rem;
+
+  /* Epidemiology Command Center — deep cosmic navy */
+  --background: oklch(0.13 0.04 265);
+  --foreground: oklch(0.97 0.01 250);
+  --card: oklch(0.18 0.045 265 / 0.6);
+  --card-foreground: oklch(0.97 0.01 250);
+  --popover: oklch(0.18 0.045 265);
+  --popover-foreground: oklch(0.97 0.01 250);
+
+  /* Electric cyan primary */
+  --primary: oklch(0.82 0.18 195);
+  --primary-foreground: oklch(0.13 0.04 265);
+  --primary-glow: oklch(0.82 0.22 195 / 0.5);
+
+  --secondary: oklch(0.22 0.05 265);
+  --secondary-foreground: oklch(0.97 0.01 250);
+  --muted: oklch(0.22 0.05 265);
+  --muted-foreground: oklch(0.72 0.03 250);
+  --accent: oklch(0.78 0.2 60); /* amber */
+  --accent-foreground: oklch(0.13 0.04 265);
+  --destructive: oklch(0.7 0.25 25); /* coral red */
+  --destructive-foreground: oklch(0.97 0.01 250);
+  --border: oklch(1 0 0 / 0.08);
+  --input: oklch(1 0 0 / 0.06);
+  --ring: oklch(0.82 0.18 195 / 0.6);
+
+  /* Vibrant chart palette */
+  --chart-1: oklch(0.82 0.18 195); /* cyan */
+  --chart-2: oklch(0.75 0.2 145); /* emerald */
+  --chart-3: oklch(0.78 0.2 60);  /* amber */
+  --chart-4: oklch(0.72 0.24 320); /* magenta */
+  --chart-5: oklch(0.7 0.22 25);  /* coral */
+
+  --gradient-hero: linear-gradient(135deg, oklch(0.82 0.18 195) 0%, oklch(0.72 0.24 320) 50%, oklch(0.78 0.2 60) 100%);
+  --gradient-card: linear-gradient(145deg, oklch(0.2 0.05 265 / 0.7), oklch(0.16 0.04 265 / 0.4));
+  --gradient-cyan: linear-gradient(135deg, oklch(0.82 0.18 195), oklch(0.65 0.2 210));
+  --gradient-amber: linear-gradient(135deg, oklch(0.85 0.18 80), oklch(0.7 0.22 45));
+  --gradient-magenta: linear-gradient(135deg, oklch(0.78 0.2 320), oklch(0.6 0.25 340));
+  --gradient-coral: linear-gradient(135deg, oklch(0.75 0.22 30), oklch(0.6 0.25 15));
+
+  --shadow-glow-cyan: 0 0 40px -10px oklch(0.82 0.22 195 / 0.5), 0 0 80px -30px oklch(0.82 0.22 195 / 0.3);
+  --shadow-elegant: 0 20px 60px -20px oklch(0.05 0.04 265 / 0.6), 0 0 0 1px oklch(1 0 0 / 0.06);
+}
+
+.dark {
+  /* Same scheme — site is dark-by-default */
+  --background: oklch(0.13 0.04 265);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html, body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  .font-display { font-family: var(--font-display); }
+  .font-mono { font-family: var(--font-mono); }
+
+  .glass {
+    background: var(--gradient-card);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border: 1px solid oklch(1 0 0 / 0.08);
+  }
+  .glass-hover {
+    transition: transform .35s cubic-bezier(.2,.7,.2,1), border-color .35s, box-shadow .35s;
+  }
+  .glass-hover:hover {
+    transform: translateY(-2px);
+    border-color: oklch(0.82 0.18 195 / 0.4);
+    box-shadow: var(--shadow-glow-cyan);
+  }
+
+  .text-gradient {
+    background: var(--gradient-hero);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(oklch(1 0 0 / 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(1 0 0 / 0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse at top, black 30%, transparent 75%);
+  }
+
+  .glow-orb {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(80px);
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  @keyframes pulse-ring {
+    0% { transform: scale(0.9); opacity: 0.8; }
+    100% { transform: scale(1.8); opacity: 0; }
+  }
+  .pulse-ring::after {
+    content: "";
+    position: absolute; inset: 0;
+    border-radius: 9999px;
+    border: 2px solid currentColor;
+    animation: pulse-ring 2.2s cubic-bezier(0.2,0.7,0.2,1) infinite;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  .shimmer {
+    background: linear-gradient(90deg, transparent, oklch(1 0 0 / 0.08), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 3s linear infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  .float { animation: float 6s ease-in-out infinite; }
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fade-up .6s cubic-bezier(.2,.7,.2,1) both; }
+}
